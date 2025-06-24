@@ -46,8 +46,28 @@
    --animate-zoom: zoomin 3s alternate ease-in-out ;
   --animate-slide: slide 3s ease-in-out;
   --animate-slide2: slide 4s ease-in-out;
+--animate-left: left 2s ease-in-out;
+  --animate-right: right 2s ease-in-out;
+    --animate-visible: visible 1s ease-in-out forwards;
 
+   @keyframes visible {
+ to{
 
+  opacity: 1;
+ } 
+  }
+   @keyframes left {
+ from{
+
+  transform:translate(100,0)
+ } 
+  }
+   @keyframes right {
+ from{
+
+  transform:translate(-100,0)
+ } 
+  }
   @keyframes slide {
  from{
 
