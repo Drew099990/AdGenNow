@@ -41,11 +41,34 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --animate-blink: blink 2s alternate ease-in-out infinite;
+  --animate-blink: blink 1s alternate ease-in-out infinite;
+  --animate-blink2: blink 1s alternate ease-out infinite;
+   --animate-zoom: zoomin 3s alternate ease-in-out ;
+  --animate-slide: slide 3s ease-in-out;
+  --animate-slide2: slide 4s ease-in-out;
 
+
+  @keyframes slide {
+ from{
+
+  opacity:0;
+ } 
+  }
   @keyframes blink {
-    opacity: 0.5;
+   50%{
+     
+     opacity: 0.3;
     
+   }
+  }
+    @keyframes zoomin {
+   from{
+     
+     transform:translate(0,10);
+     opacity:0.1;
+     fontsize:2px;
+    
+   }
   }
 }
 
