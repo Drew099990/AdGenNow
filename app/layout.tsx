@@ -43,6 +43,7 @@ export default function RootLayout({
             
           </header>
             <ConvexClientProvider>{children}</ConvexClientProvider>
+            <footer className='flex justify-center items-center font-bold italic opacity-85 text-muted-foreground'>©All rights reserved 2025 sleepy panda </footer>
         </body>
       </html>
     </ClerkProvider>
