@@ -1,12 +1,10 @@
 "use client"
 
 import React from 'react';
-import {useQuery} from "convex/react";
-import { api } from "../../../../convex/_generated/api";
-
+// import {useQuery} from "convex/react";
 const Home = () => {
- const credits = useQuery(api.users.newUser);
-
+//  const credits = useQuery(api.users.newUser);
+const credits =10;
   
   return (
     <div className='grid grid-rows-2 grid-cols-1 gap-4 p-10 text-green-100'>
@@ -17,7 +15,7 @@ const Home = () => {
         <p className=" bg-green-100 w-30 px-1 rounded-2xl text-green-900" >credit count :{credits?credits:0}</p>
        </div> 
        <div className='flex-col justify-center items-center'>
-        <button className=' animate-visible opacity-0 absolute delay-2000  top-[350px] right-[9.5rem] min-md: bg-gradient-to-t from-green-900 to-green-600 p-2 rounded-2xl hover:opacity-90 px-9'>generate video</button>
+        <a href='/workspace' className=' animate-visible opacity-0 absolute delay-2000  top-[350px] right-[9.5rem] min-md: bg-gradient-to-t from-green-900 to-green-600 p-2 rounded-2xl hover:opacity-90 px-9'>generate video</a>
         </div> </div>
       
       {/* Second Row */}

@@ -1,8 +1,7 @@
 import { v } from "convex/values";
-import { mutation, query } from "./_generated/server";
+import { mutation } from "./_generated/server";
 
 export const newUser = mutation({
-  //expected inputsfrom workspaceProvider
   args: {
     name: v.string(),
     email: v.string(),
@@ -13,8 +12,7 @@ export const newUser = mutation({
     const userData = await ctx.db.query("users").filter(q => q.eq(q.field("email"), args.email)).collect();
 
     // If user does not exist
-    if (userData.length === 0) {
-
+    if (!userData || userData.length === 0) {
       const data = {
         name: args.name,
         email: args.email,
@@ -22,14 +20,18 @@ export const newUser = mutation({
         credits: 30,
       };
 
-      const result = await ctx.db.insert("users", {
-        ...data,
-      });
-
-      return {
-        ...data,
-        _id: result,
-      };
+      try {
+        // Insert new user into the database
+        const result = await ctx.db.insert("users", data);
+        console.log(result);
+        return {
+          ...data,
+          _id: result,
+        };
+      } catch (error) {
+        console.error("Error inserting user:", error);
+        throw new Error("Failed to create new user");
+      }
     }
 
     // Return existing user data

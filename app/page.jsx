@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 export default function Home() {
 
   const [display,setDisplay] = useState(true);
-   const tasks = useQuery(api.task.get);
+   
    const user = useUser()
      
  if (user.isSignedIn){
@@ -51,10 +51,7 @@ export default function Home() {
      <SignUpButton signInFallbackRedirectUrl="/home" mode="modal" >get started</SignUpButton>
      </div> 
    
-  <main className="flex min-h-screen flex-col text-black items-center justify-between p-24">
-      {tasks?.map(({ _id, name }) => <div key={_id}>{name}</div>)}
-    </main>
-
+ 
   
 
 

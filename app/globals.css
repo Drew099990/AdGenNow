@@ -48,7 +48,41 @@
   --animate-slide2: slide 4s ease-in-out;
 --animate-left: left 2s ease-in-out;
   --animate-right: right 2s ease-in-out;
+    --animate-right2: right 3s ease-in-out;
+      --animate-right3: right 4.1s ease-in-out;
+        --animate-right4: right 3.0s ease-in-out;
+          --animate-right5: right 2s ease-in-out;
     --animate-visible: visible 1s ease-in-out forwards;
+
+  --animate-r1: right1 1.5s ease-in-out infinite forwards ;
+    --animate-l1: left1 1.5s ease-in-out infinite forwards  ;
+    --animate-m1: middle 1.5s ease-in-out infinite forwards  ;
+    
+    
+ @keyframes middle {
+ to{
+
+
+  opacity:0;
+ } 
+ 
+  }
+     
+ @keyframes left1 {
+ to{
+
+  transform:translate(100,0);
+  opacity:0;
+ } 
+ 
+  }
+   @keyframes right1 {
+ to{
+
+  transform:translate(-100,0);
+  opacity:0;
+ } 
+  }
 
    @keyframes visible {
  to{
