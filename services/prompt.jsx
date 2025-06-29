@@ -1,0 +1,1 @@
+export const Generate_script_prompt = "Topic:{topic} depends on user input generate 3 different cinematic script apealling scripts in json formatfor 30 second video for user for the video schema:[{content:''},...]"
