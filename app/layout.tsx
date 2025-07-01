@@ -26,24 +26,34 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
- <ClerkProvider>
+    <ClerkProvider>
       <html lang="en">
         <body className={`${outfit.className} text-green-900`}>
           <header className="flex justify-between items-center p-4 gap-4 h-16">
-           <div className='border-4 border-r-2 opacity-75 font-bold rounded-2xl shadow-2xl p-2 underline animate-slide2' style={{fontStyle:"cursive"}}>AdGenNow</div>
-            <div className='flex justify-between items-center p-4 gap-4 h-16'>
-              <SignedOut>
-              <div className='border-2 px-3 rounded-2xl hover:bg-green-200 duration-300 '><SignInButton mode='modal' /></div>
-              <div className='border-2 px-3 rounded-2xl hover:bg-green-200 duration-300'><SignUpButton mode='modal' /></div>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
+            <div
+              className="border-4 border-r-2 opacity-75 font-bold rounded-2xl shadow-2xl p-2 underline animate-slide2"
+              style={{ fontStyle: "cursive" }}
+            >
+              AdGenNow
             </div>
-            
+            <div className="flex justify-between items-center p-4 gap-4 h-16">
+              <SignedOut>
+                <div className="border-2 px-3 rounded-2xl hover:bg-green-200 duration-300">
+                  <SignInButton mode="modal" />
+                </div>
+                <div className="border-2 px-3 rounded-2xl hover:bg-green-200 duration-300">
+                  <SignUpButton mode="modal" />
+                </div>
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            </div>
           </header>
-            <ConvexClientProvider>{children}</ConvexClientProvider>
-            <footer className='flex justify-center mb-5 items-center font-bold italic opacity-85 text-muted-foreground'>©2025 All rights reserved sleepy panda </footer>
+          <ConvexClientProvider>{children}</ConvexClientProvider>
+          <footer className="flex justify-center mb-5 items-center font-bold italic opacity-85 text-muted-foreground">
+            ©2025 All rights reserved sleepy panda
+          </footer>
         </body>
       </html>
     </ClerkProvider>

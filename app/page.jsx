@@ -22,7 +22,7 @@ export default function Home() {
  }
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center my-7">
       
       {display ? <div className="text-green-300 duration-700 w-fit shadow-xl shadow-black h-fit text-9xl px-[10rem] py-40 justify-center items-center flex bg-gradient-to-tr from-black opacity-90 border-[#c4b9b9] border-4 via-black to-white font-serif  "><p className="animate-zoom">AdGenNow</p>
         <p className="animate-blink">_</p>
@@ -39,17 +39,22 @@ export default function Home() {
       </div>
     }
   
-    <p className=" text-green-900 font-sans mt-7 font-bold  text-5xl opacity-85 animate-slide">
-      The number one leading platform for high quality creation of Ads 
-    </p> 
-   
-    <p className=" font-serif text-muted-foreground  mt-7 font-bold italic text-[1rem] animate-slide2">
-   for all your business or personal needs any time anywhere all in less than 5 minutes generate now. 
-   </p>
-    
-   <div onMouseEnter={()=>{setDisplay(!display)}} className=" hover:text-yellow-100 duration-2000 text-xl animate-none flex justify-center items-center ring-4 ring-green-100 bg-black p-2 rounded-2xl border-2 border-green-950 text-green-100 px-5  mt-7">
-     <SignUpButton signInFallbackRedirectUrl="/home" mode="modal" >get started</SignUpButton>
-     </div> 
+    <p className="text-green-900 font-sans mt-7 font-bold text-5xl opacity-85 animate-slide">
+      #1 leading platform offering you short form cinematic videos
+    </p>
+
+    <p className="font-serif text-muted-foreground mt-7 font-bold italic text-[1rem] animate-slide2">
+      for all your business, startup, heck even your own personal needs any time anywhere all in less than 3 minutes.
+    </p>
+
+    <div
+      onMouseEnter={() => { setDisplay(!display); }}
+      className="shadow-2xl hover:text-yellow-100 duration-2000 text-xl animate-none flex justify-center items-center ring-4 ring-green-100 bg-black p-2 rounded-2xl border-2 border-green-950 text-green-100 px-5 mt-7"
+    >
+      <SignUpButton signInFallbackRedirectUrl="/home" mode="modal">
+        get started
+      </SignUpButton>
+    </div>
    
  
   
