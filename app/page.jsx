@@ -51,7 +51,7 @@ export default function Home() {
       onMouseEnter={() => { setDisplay(!display); }}
       className="shadow-2xl hover:text-yellow-100 duration-2000 text-xl animate-none flex justify-center items-center ring-4 ring-green-100 bg-black p-2 rounded-2xl border-2 border-green-950 text-green-100 px-5 mt-7"
     >
-      <SignUpButton signInFallbackRedirectUrl="/home" mode="modal">
+      <SignUpButton signInFallbackRedirectUrl="/workspace" mode="modal">
         get started
       </SignUpButton>
     </div>

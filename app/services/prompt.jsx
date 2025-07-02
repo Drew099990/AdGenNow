@@ -1,1 +1,1 @@
-export const Generate_script_prompt = "Topic:{topic} depends on user input generate 3 different cinematic script apealling scripts in json formatfor 30 second video for user for the video schema:[{content:''},...]"
+export const Generate_script_prompt = "Topic:{topic} depends on user input generate a cinematic script apealling script in json formatfor 30 second video for user for the video schema:[{content:''},...] return no additional text or say anythin else just return what i asked for and do not add ```json\\n' at the begging of the content"

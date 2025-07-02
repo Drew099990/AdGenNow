@@ -20,5 +20,5 @@ export default defineSchema({users: defineTable({
     voiceUrl:v.optional(v.any()),
     avaterUrl:v.optional(v.any()),
     videoUrl:v.optional(v.any()),
-    user: v.optional(v.id("users")) // Add user reference
+    user: v.optional(v.string()) // Add user reference
 })})

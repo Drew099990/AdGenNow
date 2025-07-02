@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { api } from "../../../convex/_generated/api"
 import axios from 'axios'
 import { FaVideo, FaHome, FaUser, FaCog, FaCreditCard, FaSignOutAlt, FaEnvelope, FaPaperPlane } from "react-icons/fa";
+import { useRouter } from 'next/navigation';
 
 const WorkSpaceProvider = () => {
   const [userinput, setUserinput] = useState("");
@@ -13,10 +14,11 @@ const WorkSpaceProvider = () => {
   const newUserMutation = useMutation(api.users.newUser)
   const newVideoMutation = useMutation(api.videoData.createNewVideo)
   const { user } = useUser()
+  const router = useRouter();
 
   async function generator(e) {
     e.preventDefault();
- setLoading(true);
+    setLoading(true);
     try {
       // Send user input to OpenAI API route
       const generate_video = await axios.post("./api/createscripts", {
@@ -29,6 +31,8 @@ const WorkSpaceProvider = () => {
         user: user?.id // Add user reference
       });
       setUserinput("");
+      // Redirect to video_id page after script is generated
+      router.push("/video_id");
     } catch (err) {
       alert("Failed to generate and save video script.");
     }
@@ -107,9 +111,9 @@ const WorkSpaceProvider = () => {
         <div className='flex-col flex animate-slide'>
           <button className='  rounded-tl-2xl mt-8 border-t-2 border-b-2 py-2  bg-gradient-to-l from-green-950 to-green-800 text-white opacity-50 px-3'>leave a message</button>
           <label className=' border-t-2 border-b-2 py-2  hover:from-green-200 hover:to-green-100 px-3'><FaEnvelope className="inline mr-2" />email:</label>
-          <input placeholder='will@gmail.com' className=' border-t-2 border-b-2 py-2 border-green-200  hover:bg-gradient-to-l hover:from-green-100 hover:to-green-100 px-3'></input>
+          <input placeholder='will@gmail.com' className='p-4 px-10 border-t-2 border-b-2 py-2 border-green-200  hover:bg-gradient-to-l hover:from-green-100 hover:to-green-100 px-3'></input>
           <label className=' border-t-2 border-b-2 py-2  hover:from-green-200 hover:to-green-100 px-3'>message:</label>
-          <input placeholder='i would ...' className='py-4 border-t-2 border-b-2 py-2 border-green-200  hover:bg-gradient-to-l hover:from-green-100 hover:to-green-100 px-3'></input>
+          <input placeholder='i would ...' className='p-4 px-10 border-t-2 border-b-2 py-2 border-green-200  hover:bg-gradient-to-l hover:from-green-100 hover:to-green-100 px-3'></input>
           <button className=' hover:opacity-60 rounded-bl-2xl border-t-2 border-b-2 py-2  bg-gradient-to-l from-green-950 to-green-700 text-white opacity-50 px-3'><FaPaperPlane className="inline mr-2" />send</button>
           <SignOutButton className='rounded-2xl animate-none hover:opacity-60 rounded-bl-2xl border-t-2 border-b-2 py-2  bg-gradient-to-l from-green-950 to-green-700 text-white opacity-50 px-3 mt-8'>logout</SignOutButton>
         </div>
@@ -128,12 +132,59 @@ const WorkSpaceProvider = () => {
             <h4 className='italic font-serif'> Please be as descriptive as possible for the best results :).</h4>
             <form className='flex flex-col justify-center items-center' onSubmit={generator}>
               <textarea value={userinput} onChange={(e) => setUserinput(e.target.value)} placeholder='eg. generate cinematic video of the rain...' type='text' autoComplete={"true"} autoCorrect={"true"} maxLength={200} className='from-yellow-200 border-2 border-green-800 to-green-500 bg-gradient-to-r mt-5 text-green-800 font-semibold rounded-2xl px-5 p-7 w-120 border-2 border-gray-700'></textarea>
-              <button type="submit" className='m-2 w-20 mt-6 border-2 ring-4 ring-green-200 opacity-75 border-green-500 shadow-2xl p-2 from-green-600 hover:opacity-88 to-green-300 bg-gradient-to-r rounded-2xl text-green-950 flex w-fit' disabled={loading || !userinput.trim()}> {loading ? "generating..." : "generate"}{loading ? <FaVideo className="text-xl ml-1 pt-2 animate-spin "  /> :  <FaVideo className="text-xl ml-1 pt-2 " />} </button>
+              <button type="submit" className='m-2 w-20 mt-6 border-2 ring-4 ring-green-200 opacity-75 border-green-500 shadow-2xl p-2 from-green-600 hover:opacity-88 to-green-300 bg-gradient-to-r rounded-2xl text-green-950 flex w-fit' disabled={loading || !userinput.trim()}> {loading ? "generating" : "generate"}{loading ? <FaVideo className="text-xl ml-1 pt-2 animate-spin "  /> :  <FaVideo className="text-xl ml-1 pt-2 " />} </button>
             </form>
           </div>
         </div> : <div></div>}
         {menu === "your videos" ? <div><FaUser className="inline mr-2" />your videos</div> : <div></div>}
-        {menu === "billing" ? <div><FaCreditCard className="inline mr-2" />billing</div> : <div></div>}
+        {menu === "billing" ? (
+          <div className="pt-10">
+            <div className="mr-2 flex-col flex opacity-40 justify-baseline mt-7 items-center p-4 border border-green-300 text-3xl font-bold font-serif text-green-800  shadow">
+              Our Tiers
+            </div>
+            <div className="flex flex-wrap justify-center items-stretch gap-18 mt-16">
+              {/* Free Pack */}
+              <div className="bg-gradient-to-t from-green-50 to-green-200 rounded-3xl border-4 border-green-700 shadow-lg w-72 min-h-[360px] flex flex-col items-center p-6 transition-transform hover:scale-105 hover:shadow-green-400/50 opacity-70">
+                <h2 className="text-2xl font-bold text-green-900 mb-2 bg-gradient-to-l from-green-800 to-green-700 bg-clip-text text-transparent opacity-70">Free Pack</h2>
+                <div className="flex items-center justify-center mb-4 opacity-70">
+                  <span className="text-4xl">⪀</span>
+                </div>
+                <ul className="text-green-800 text-base mb-6 space-y-2 opacity-70">
+                  <li>✔️ Basic video generation</li>
+                  <li>✔️ Limited storage</li>
+                  <li>✔️ Community support</li>
+                </ul>
+                <button className="mt-auto bg-gradient-to-l from-green-800 to-green-700 text-white px-6 py-2 rounded-xl font-semibold shadow hover:from-green-900 hover:to-green-700 transition opacity-70">Get Started</button>
+              </div>
+              {/* Lifetime Pack */}
+              <div className="bg-gradient-to-t from-green-100 to-green-300 rounded-3xl border-4 border-green-700 shadow-lg w-72 min-h-[360px] flex flex-col items-center p-6 transition-transform hover:scale-105 hover:shadow-green-400/50 opacity-70">
+                <h2 className="text-2xl font-bold text-green-900 mb-2 bg-gradient-to-l from-green-800 to-green-700 bg-clip-text text-transparent opacity-70">Lifetime Pack</h2>
+                <div className="flex items-center justify-center mb-4 opacity-70">
+                  <span className="text-4xl">⪀</span>
+                </div>
+                <ul className="text-green-800 text-base mb-6 space-y-2 opacity-70">
+                  <li>✨ Unlimited video generation</li>
+                  <li>✨ Priority support</li>
+                  <li>✨ All features unlocked</li>
+                </ul>
+                <button className="mt-auto bg-gradient-to-l from-green-800 to-green-700 text-white px-6 py-2 rounded-xl font-semibold shadow hover:from-green-900 hover:to-green-700 transition opacity-70">Buy Now</button>
+              </div>
+              {/* 6 Months Pack */}
+              <div className="bg-gradient-to-t from-green-50 to-green-200 rounded-3xl border-4 border-green-700 shadow-lg w-72 min-h-[360px] flex flex-col items-center p-6 transition-transform hover:scale-105 hover:shadow-green-400/50 opacity-70">
+                <h2 className="text-2xl font-bold text-green-900 mb-2 bg-gradient-to-l from-green-800 to-green-700 bg-clip-text text-transparent opacity-70">6 Months Pack</h2>
+                <div className="flex items-center justify-center mb-4 opacity-70">
+                  <span className="text-4xl">⪀</span>
+                </div>
+                <ul className="text-green-800 text-base mb-6 space-y-2 opacity-70">
+                  <li>⭐ Unlimited video generation (6 months)</li>
+                  <li>⭐ Email support</li>
+                  <li>⭐ Access to new features</li>
+                </ul>
+                <button className="mt-auto bg-gradient-to-l from-green-800 to-green-700 text-white px-6 py-2 rounded-xl font-semibold shadow hover:from-green-900 hover:to-green-700 transition opacity-70">Subscribe</button>
+              </div>
+            </div>
+          </div>
+        ) : <div></div>}
         {menu === "settings" ? <div><FaCog className="inline mr-2" />setting</div> : <div></div>}
       </div>
     </div>
